@@ -1,0 +1,40 @@
+<%- include('layout/header') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mx-auto-mt-4">
+            <h3 class="text-dark">Edit User (<%= user.name  %>)</h3>
+      <form action="/update/<%= user._id %>" method="post" enctype="multipart/form-data">
+        <!-- User Name -->
+        <div class="form-group">
+          <label for="name"> Name</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>" required>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" class="form-control" id="phone" value="<%= user.phone %>" name="phone" required>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" value="<%= user.email %>" id="email" name="email" required>
+        </div>
+
+        <!-- Image -->
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input type="file" class="form-control-file" id="image" name="image" accept="image/*" >
+          <img src="/<%= user.image %>" width="100" class="img-thumbnail mt-1" alt="">
+        </div>
+        <input type="hidden" name="old_image" value="<%= user.image %>">
+
+       <input type="submit" name="submit" value="Update User" class="btn btn-success btn-lg">
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('layout/footer') %>
