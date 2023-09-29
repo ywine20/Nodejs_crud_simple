@@ -6,9 +6,12 @@
 <script>
     $(document).ready(function() {
         $("table").DataTable({
-            order:[0,'desc']
+            order:[0,'asc'],
+           lengthMenu: [3,10,25],
+            pageLength: 3,      
         });
     });
+     
 </script>
 </body>
 </html>

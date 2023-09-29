@@ -83,6 +83,7 @@ router.get("/edit/:id", async (req, res) => {
     }
 });
 
+//edit route 
 router.post('/update/:id', upload, async (req, res) => {
     try {
         const id = req.params.id;
@@ -128,17 +129,16 @@ router.get('/delete/:id', async (req, res) => {
         if (!user) {
             return res.json({ message: 'User not found.' });
         }
-
+        //local delete
         if (user.image !== "") {
             try {
-                fs.unlinkSync(`/uploads/${user.image}`);
+                const imagePath = path.join(__dirname, '../uploads', user.image);
+                fs.unlinkSync(imagePath);
             } catch (err) {
                 console.log(err);
             }
         }
-
         await User.findOneAndDelete({ _id: id });
-
         req.session.message = {
             type: 'success',
             message: 'User deleted successfully!',
